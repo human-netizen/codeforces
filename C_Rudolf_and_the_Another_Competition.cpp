@@ -32,23 +32,24 @@ int main(){
                 ac[j] = mo[j];            
             }
             sort(all(mo));
+            sort(all(ac));
             ll cnt = 0 , scr = 0 , acr = 0;
             for(ll j = 0 ; j < m ; j++){
                 if(acr + ac[j] > h)break;
                 cnt++;
                 scr+=mo[j];
                 acr+=ac[j];
-                if(j + 1 < n)mo[j + 1]+=mo[j];
+                if(j < m - 1)mo[j + 1]+=mo[j];
             }
             vpi.push_back({{cnt , scr} , i + 1});
         }
         sort(all(vpi) , cmp);
         ll idx = 0;
-        for(ll i = 0 ; i < vpi.size() ; i++){
+        for(ll i = 0 ; i < n ; i++){
             if(vpi[i].second == 1)
             {
                 idx = i + 1;
-                break;
+            //    break;
             }
             //cout<<i<<" "<<vpi[i].first.first<<" "<<vpi[i].first.second<<" "<<vpi[i].second<<endl;
         }
