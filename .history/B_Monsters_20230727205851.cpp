@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+template<typename A, typename B> ostream& operator<<(ostream& os, const pair<A, B>&p) {return os<<'(' << p.first << ", " << p.second << ')';}
+template<typename T_container, typename T = typename enable_if<!is_same<T_container, string>::value, typename T_container::value_type>::type> ostream& operator<<(ostream& os, const T_container& v) {os << '{'; string sep;for(const T& x: v) os << sep << x, sep = ", "; return os << '}';}
+void dbg_out() {cerr<<endl;}
+template <typename Head, typename... Tail> void dbg_out(Head H, Tail... T) {cerr << " " << H; dbg_out(T...); }
+ 
+#define debug(args...) cerr << "(" << #args << "):",dbg_out(args)
+ 
+ 
+typedef long long ll;
+#define all(x) x.begin(),x.end()
+#define tc int tt, qq=0; cin>>tt; while(qq++<tt)
+#define cs cout<<"Case "<<qq<<": "
+#define csl cout<<"Case "<<qq<<":"<<endl
+#define uniq(vec) vec.resize(distance(vec.begin(),unique(vec.begin(),vec.end())))
+ 
+int main(){
+ tc{
+    int n , k;cin>>n>>k;
+    vector<int>ara(n);
+    vector<pair<int,int> > sol;
+    vector<pair<int,int> > bol;
+    for(int i = 0 ; i < n ; i++){
+        cin>>ara[i];
+        ara[i] %= k;
+        sol.push_back({ara[i] , i + 1});
+        bol.push_back({k - ara[i] , i + 1});
+    }
+    sort(all(sol));
+    for(auto it:sol){
+        if(it.first == 0)cout<<it.second<<" ";
+    }
+    sort(all(bol));
+    for(auto it:bol){
+        if(it.first == 0)continue;
+        cout<<it.second<<" ";
+    }
+    cout<<endl;
+ }   
+}
